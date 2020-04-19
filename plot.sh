@@ -55,6 +55,7 @@ unset logscale y
 set yrange [0:*]
 
 set title "Data from https://www.gov.scot/publications/trends-in-number-of-people-in-hospital-with-confirmed-or-suspected-covid-19/"
+set ylabel "cases"
 
 set out "plots/scotland-hospital.png"
 plot 'data/scotland.gp' using 1:10 w linesp lw 1.5 lt 7 ti "total",\
