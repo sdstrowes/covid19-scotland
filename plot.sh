@@ -110,17 +110,17 @@ set notitle
 set format x ""
 set arrow from 1583020800,0 to $enddate,0 nohead
 
-set size 0.5,0.38
-set origin 0,0.58
+set size 0.5,0.43
+set origin 0,0.53
 plot 'data/scotland-deltas.gp' using 1:2 w imp lw 1.5 lt 1 ti "confirmed positive"
 
-set origin 0.5,0.58
+set origin 0.5,0.53
 plot 'data/scotland-deltas.gp'                        using 1:3 w imp lw 1.5 lt 2 ti "attributed deaths"
 
 set format x "%Y-%m-%d"
 #set tmargin at screen 0.1
 
-set size 0.5,0.59
+set size 0.5,0.535
 set origin 0,0
 
 plot 'data/scotland-deltas.gp'                        using 1:4 w imp lw 1.5 lt 4 ti "total hospitalised"
