@@ -10,6 +10,8 @@ plots of covid-19 numbers in scotland
 
 ![Hospital patients: suspected, confirmed, and total](plots/scotland-hospital.png)
 
+### ICU/HDU rates
+
 ![Patients in ICU or combined ICU/HDU: suspected, confirmed, and total](plots/scotland-icu.png)
 
 ## Numbers tested
