@@ -50,5 +50,21 @@ set out "plots/scotland-confirmed.png"
 plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
      ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths"
 
+
+unset logscale y
+set yrange [0:*]
+
+set title "Data from https://www.gov.scot/publications/trends-in-number-of-people-in-hospital-with-confirmed-or-suspected-covid-19/"
+
+set out "plots/scotland-hospital.png"
+plot 'data/scotland.gp' using 1:10 w linesp lw 1.5 lt 7 ti "total",\
+     ''                 using 1:9  w linesp lw 1.5 lt 5 ti "suspected COVID-19",\
+     ''                 using 1:8  w linesp lw 1.5 lt 6 ti "confirmed positive",\
+
+set out "plots/scotland-icu.png"
+plot 'data/scotland.gp' using 1:7  w linesp lw 1.5 lt 7 ti "total",\
+     ''                 using 1:6  w linesp lw 1.5 lt 5 ti "suspected COVID-19",\
+     ''                 using 1:5  w linesp lw 1.5 lt 6 ti "confirmed positive",\
+
 EOF
 
