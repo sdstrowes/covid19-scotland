@@ -1,6 +1,11 @@
 # covid19-scotland
 plots of covid-19 numbers in scotland
 
+## Daily changes
+
+![Daily changes in positive rates, attributed deaths, total hospitalised (inc ICU/HDU), and total ICU/HDU](plots/scotland-change.png)
+
+
 ## Hospitalisation rates
 
 ![Hospital patients: suspected, confirmed, and total](plots/scotland-hospital.png)
