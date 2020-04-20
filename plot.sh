@@ -48,6 +48,7 @@ set xtic rotate
 
 set yrange [0:*]
 set xrange [1583020800:*]
+set xtics 1583107200,604800
 
 set out "plots/scotland-tested-linear.png"
 plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "tested",\
@@ -63,7 +64,7 @@ plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
 
 
 set logscale y
-set ytics -400,100
+set ytics 0,100
 set yrange [*:*]
 set ylabel "confirmed cases (logscale)"
 
@@ -88,6 +89,7 @@ plot 'data/scotland.gp' using 1:10 w linesp lw 1.5 lt 4 ti "total",\
      ''                 using 1:9  w linesp lw 1.5 lt 5 ti "suspected positive",\
      ''                 using 1:8  w linesp lw 1.5 lt 6 ti "confirmed positive",\
 
+set ytics 0,50
 set out "plots/scotland-icu.png"
 plot 'data/scotland.gp' using 1:7  w linesp lw 1.5 lt 7 ti "total",\
      ''                 using 1:6  w linesp lw 1.5 lt 5 ti "suspected positive",\
@@ -109,6 +111,8 @@ set xtic scale 0
 set notitle
 set format x ""
 set arrow from 1583020800,0 to $enddate,0 nohead
+
+set ytics -400,100
 
 set size 0.5,0.43
 set origin 0,0.53
