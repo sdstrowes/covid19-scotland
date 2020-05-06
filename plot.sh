@@ -56,7 +56,7 @@ plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "tested",\
      ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths",\
 
 
-set ytics 0,500
+set ytics 0,1000
 set out "plots/scotland-confirmed-linear.png"
 plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
      ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths"
