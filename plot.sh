@@ -51,7 +51,7 @@ set xrange [1583020800:*]
 set xtics 1583107200,604800
 
 set out "plots/scotland-tested-linear.png"
-plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "tested",\
+plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "people tested",\
      ''                 using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
      ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths",\
 
@@ -69,7 +69,7 @@ set yrange [*:*]
 set ylabel "confirmed cases (logscale)"
 
 set out "plots/scotland-tested.png"
-plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "tested",\
+plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "people tested",\
      ''                 using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
      ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths",\
 
