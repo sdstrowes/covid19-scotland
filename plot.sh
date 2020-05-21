@@ -34,7 +34,6 @@ set title "data from https://www.gov.scot/coronavirus-covid-19/"
 
 set key top left
 
-set border 3
 set grid
 set tics nomirror
 
@@ -50,12 +49,19 @@ set yrange [0:*]
 set xrange [1583020800:*]
 set xtics 1583107200,604800
 
+set border 11
+set y2tics 0,0.02
+set y2range [0:0.24]
+set y2label "people tested to positive case ratio"
 set out "plots/scotland-tested-linear.png"
 plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "people tested",\
      ''                 using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
      ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths",\
+     ''                 using 1:(\$3/\$2) w linesp lw 1 lt 7 ti "tested-to-positive ratio (y2)" axes x1y2 ,\
 
 
+unset y2tics
+set border 3
 set ytics 0,1000
 set out "plots/scotland-confirmed-linear.png"
 plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
