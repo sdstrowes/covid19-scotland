@@ -85,6 +85,14 @@ plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
 
 
 unset logscale y
+set ylabel "confirmed cases"
+set ytics 0,1000
+
+set out "plots/scotland-confirmed-linear.png"
+plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
+     ''                 using 1:4 w linesp lw 1.5 lt 2 ti "attributed deaths"
+
+
 set yrange [0:*]
 
 set title "Data from https://www.gov.scot/publications/trends-in-number-of-people-in-hospital-with-confirmed-or-suspected-covid-19/"
