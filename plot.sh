@@ -92,12 +92,14 @@ set title "Data from https://www.gov.scot/publications/trends-in-number-of-peopl
 set ylabel "cases"
 
 set out "plots/scotland-hospital.png"
+set title "Patients currently hospitalised"
 plot 'data/scotland.gp' using 1:10 w linesp lw 1.5 lt 4 ti "total",\
      ''                 using 1:9  w linesp lw 1.5 lt 5 ti "suspected positive",\
      ''                 using 1:8  w linesp lw 1.5 lt 6 ti "confirmed positive",\
 
 set ytics 0,50
 set out "plots/scotland-icu.png"
+set title "Patients currently in ICU or combined ICU/HDU"
 plot 'data/scotland.gp' using 1:7  w linesp lw 1.5 lt 7 ti "total",\
      ''                 using 1:6  w linesp lw 1.5 lt 5 ti "suspected positive",\
      ''                 using 1:5  w linesp lw 1.5 lt 6 ti "confirmed positive",\
@@ -111,7 +113,7 @@ set term pngcairo size 1000,800
 set ylabel "daily change"
 set yrange [-100:500]
 set out "plots/scotland-change.png"
-set multiplot title "Data from https://www.gov.scot/publications/trends-in-number-of-people-in-hospital-with-confirmed-or-suspected-covid-19/"
+set multiplot title "Daily changes: number of new positive cases, reported deaths, hospitalised, and ICU"
 
 set border 2
 set xtic scale 0
