@@ -136,6 +136,9 @@ set format x "%Y-%m-%d"
 set size 0.5,0.535
 set origin 0,0
 
+set yrange [-100:200]
+set ytics -100,20
+
 plot 'data/scotland-deltas.gp'                        using 1:4 w imp lw 1.5 lt 4 ti "hospitalised"
 
 set origin 0.5,0
