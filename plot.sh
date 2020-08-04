@@ -11,8 +11,8 @@ BEGIN {
 		icu  = 0
 	}
 	else {
-		hosp = $10 - last_hosp
-		icu  =  $7 - last_icu
+		hosp = $8 - last_hosp
+		icu  = $5 - last_icu
 	}
 
 	print $1, $3-last_positive, $4-last_deaths, hosp, icu
@@ -20,8 +20,8 @@ BEGIN {
 	last_positive = $3
 	last_deaths = $4
 	if (NF > 4) {
-		last_hosp = $10
-		last_icu  = $7
+		last_hosp = $8
+		last_icu  = $5
 	}
 }' data/scotland.gp > data/scotland-deltas.gp
 enddate=$(gdate --date `tail -1 data/scotland-deltas.gp | awk '{print $1}'` -u +%s)
@@ -136,10 +136,10 @@ set format x "%Y-%m-%d"
 set size 0.5,0.535
 set origin 0,0
 
-plot 'data/scotland-deltas.gp'                        using 1:4 w imp lw 1.5 lt 4 ti "total hospitalised"
+plot 'data/scotland-deltas.gp'                        using 1:4 w imp lw 1.5 lt 4 ti "hospitalised"
 
 set origin 0.5,0
-plot 'data/scotland-deltas.gp'                        using 1:5 w imp lw 1.5 lt 7 ti "total ICU/HDU"
+plot 'data/scotland-deltas.gp'                        using 1:5 w imp lw 1.5 lt 7 ti "ICU/HDU"
 unset multiplot
 EOF
 
