@@ -2,8 +2,8 @@
 
 awk '
 BEGIN {
-	last_hosp = -1
-	last_icu  = -1
+	last_hosp = 0
+	last_icu  = 0
 }
 {
 	if (last_hosp == -1) {
@@ -11,18 +11,22 @@ BEGIN {
 		icu  = 0
 	}
 	else {
-		hosp = $8 - last_hosp
+		if (NF > 10 && $8 == "-") {
+			hosp = $11 - last_hosp
+			last_hosp = $11
+		}
+		else if (NF > 4) {
+			hosp = $8 - last_hosp
+			last_hosp = $8
+		}
 		icu  = $5 - last_icu
+		last_icu = $5
 	}
 
 	print $1, $3-last_positive, $4-last_deaths, hosp, icu
 
 	last_positive = $3
 	last_deaths = $4
-	if (NF > 4) {
-		last_hosp = $8
-		last_icu  = $5
-	}
 }' data/scotland.gp > data/scotland-deltas.gp
 enddate=$(gdate --date `tail -1 data/scotland-deltas.gp | awk '{print $1}'` -u +%s)
 
@@ -92,10 +96,12 @@ set title "Data from https://www.gov.scot/publications/trends-in-number-of-peopl
 set ylabel "cases"
 
 set out "plots/scotland-hospital.png"
+set key top right
 set title "Patients currently hospitalised"
 plot 'data/scotland.gp' using 1:10 w linesp lw 1.5 lt 4 ti "total",\
      ''                 using 1:9  w linesp lw 1.5 lt 5 ti "suspected positive",\
-     ''                 using 1:8  w linesp lw 1.5 lt 6 ti "confirmed positive",\
+     ''                 using 1:8  w linesp lw 1.5 lt 6 ti "confirmed positive (old measure)",\
+     ''                 using 1:11 w linesp lw 1.5 lt 7 ti "recently confirmed positive",\
 
 set ytics 0,50
 set out "plots/scotland-icu.png"
@@ -111,7 +117,7 @@ plot 'data/scotland.gp' using 1:7  w linesp lw 1.5 lt 7 ti "total",\
 set term pngcairo size 1000,800
 
 set ylabel "daily change"
-set yrange [-100:500]
+set yrange [0:1000]
 set out "plots/scotland-change.png"
 set multiplot title "Daily changes: number of new positive cases, reported deaths, hospitalised, and ICU"
 
@@ -128,6 +134,8 @@ set origin 0,0.53
 plot 'data/scotland-deltas.gp' using 1:2 w imp lw 1.5 lt 1 ti "confirmed positive"
 
 set origin 0.5,0.53
+set yrange [0:100]
+set ytics 0,10
 plot 'data/scotland-deltas.gp'                        using 1:3 w imp lw 1.5 lt 2 ti "attributed deaths"
 
 set format x "%Y-%m-%d"
@@ -136,12 +144,14 @@ set format x "%Y-%m-%d"
 set size 0.5,0.535
 set origin 0,0
 
-set yrange [-100:200]
-set ytics -100,20
+set yrange [-80:140]
+set ytics -80,20
 
 plot 'data/scotland-deltas.gp'                        using 1:4 w imp lw 1.5 lt 4 ti "hospitalised"
 
 set origin 0.5,0
+set yrange [-40:70]
+set ytics -80,10
 plot 'data/scotland-deltas.gp'                        using 1:5 w imp lw 1.5 lt 7 ti "ICU/HDU"
 unset multiplot
 EOF
