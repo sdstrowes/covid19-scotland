@@ -66,7 +66,7 @@ plot 'data/scotland.gp' using 1:2 w linesp lw 1.5 lt 3 ti "people tested",\
 unset y2label
 unset y2tics
 set border 3
-set ytics 0,1000
+set ytics 0,10000
 set ylabel "confirmed cases"
 set out "plots/scotland-confirmed-linear.png"
 plot 'data/scotland.gp' using 1:3 w linesp lw 1.5 lt 1 ti "confirmed positive",\
@@ -117,7 +117,7 @@ plot 'data/scotland.gp' using 1:7  w linesp lw 1.5 lt 7 ti "total",\
 set term pngcairo size 1000,800
 
 set ylabel "daily change"
-set yrange [0:1000]
+set yrange [0:2800]
 set out "plots/scotland-change.png"
 set multiplot title "Daily changes: number of new positive cases, reported deaths, hospitalised, and ICU"
 
@@ -127,7 +127,7 @@ set notitle
 set format x ""
 set arrow from 1583020800,0 to $enddate,0 nohead
 
-set ytics -400,100
+set ytics -400,200
 
 set size 0.5,0.43
 set origin 0,0.53
